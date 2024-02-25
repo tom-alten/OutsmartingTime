@@ -1,12 +1,14 @@
 # Ignore everything
 *
 
-# Except for .ipynb files
+# Except for .ipynb files and py files
 !*.ipynb
+!*.py
 
-# Ignore all files in subdirectories, except .ipynb
+# Ignore all files in subdirectories, except .ipynb and .py files
 !**/
 !**/*.ipynb
+!**/*.py
 
 # Optionally, ignore .ipynb_checkpoints directories that Jupyter creates
 .ipynb_checkpoints/
