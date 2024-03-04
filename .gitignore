@@ -4,11 +4,14 @@
 # Except for .ipynb files and py files
 !*.ipynb
 !*.py
+!*.parquet
+!*.xls
 
 # Ignore all files in subdirectories, except .ipynb and .py files
 !**/
 !**/*.ipynb
 !**/*.py
-
+!**/*.parquet
+!**/*.xls
 # Optionally, ignore .ipynb_checkpoints directories that Jupyter creates
 .ipynb_checkpoints/
