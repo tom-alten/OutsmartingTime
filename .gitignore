@@ -13,5 +13,9 @@
 !**/*.py
 !**/*.parquet
 !**/*.xls
+
+# Ignore specific directory 'uni2ts' and its contents
+uni2ts/
+
 # Optionally, ignore .ipynb_checkpoints directories that Jupyter creates
 .ipynb_checkpoints/
