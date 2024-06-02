@@ -13,6 +13,9 @@
 !**/*.py
 !**/*.parquet
 !**/*.xls
+!**/*.tex
+!**/*.bib
+!**/*.pdf
 
 # Ignore specific directory 'uni2ts' and its contents
 uni2ts/
