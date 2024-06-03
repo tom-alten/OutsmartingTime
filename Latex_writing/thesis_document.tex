@@ -90,8 +90,7 @@
   {\large BI Norwegian Business School\par} % Organization
   \vspace{1cm}
   {\large \today\par} % Date
-  \vspace{2cm} % Space before the abstract or introduction
-  % You can include an abstract here or any introductory text.
+  \vspace{2cm} 
 \end{titlepage}
 \section*{Acknowledgements}
 We would like to express our gratitude to everyone who has supported us throughout our master’s thesis, which marks the completion of our master’s program in Business Analytics at BI Norwegian Business School.
@@ -142,18 +141,23 @@ This thesis focuses on evaluating the performances of Chronos, TimeGPT, and Moir
 
 In summary, this thesis aims to enrich the knowledge of foundation models in time series forecasting. By evaluating their performance against traditional benchmarks and assessing their adaptability across different data contexts, we seek to offer insights to both researchers and practitioners. Our findings will underscore both the potential and the areas for improvement of these models.
 
-\section{Literature Review}
+
+\newpage
+{\centering \section{Literature Review} \par}
+
 Time series forecasting has undergone significant technological advancements and theoretical developments since the mid-20th century. From the initial statistical methods to today's advanced deep learning models, the field has grown alongside computational capabilities and developments in analytical techniques. From the 1950s, Exponential Smoothing methods originated from the work of \cite{Brown1959,brown1963smoothing}, \cite{holt1957forecasting} and \cite{Winters1960ForecastingSB}. While these methods became popular among practitioners, they struggled to attract attention from statisticians due to the absence of a solid statistical foundation. It was \cite{Muth1960} who first placed exponential smoothing into a statistical context, a path later pursued by the likes of \cite{box1970time}. The techniques received further exposure and credibility through reviews and studies by \cite{Gardner1985}, who extensively evaluated the methods developed until then. This demonstrated that Simple Exponential Smoothing could be viewed as a model based on a single error source, reinforcing the statistical basis of exponential smoothing \parencite{DEGOOIJER2006443}.
 
-\cite{Yule1927} introduced the concept that every time series could be considered the realization of a stochastic process, meaning the data points can be assumed to be outcomes from a probabilistic model. This idea led to the first formulations of autoregressive (AR) and moving average (MA) models. The integration of AR with MA models into autoregressive moving average (ARMA) models was further innovated by \cite{Slutzky1937} and \cite{wold1939}. \cite{box1970time} provided further work on these concepts and introduced the Box-Jenkins methodology, which optimizes the application of ARMA models and introduced autoregressive integrated moving average (ARIMA) models for handling non-stationary data. The Box-Jenkins approach enormously impacted the theory and practice of time series analysis and forecasting in modern times \parencite{DEGOOIJER2006443}. \cite{HyndmanForecasting2021}, and earlier editions, provides a thorough overview of these traditional methods and applications. With the innovations of computers, ARIMA models became more practical for practitioners, but as access to computational power has increased, machine learning models have also become a popular choice. Boosting algorithms were introduced to improve the accuracy of predictive models. \cite{Freund1997} developed AdaBoost as a boosting technique for classification problems. This laid the groundwork for \cite{Friedman2001}, which introduced gradient boosting. Gradient boosting later became the foundations for \cite{chen2016} with XGBoost and \cite{guolin2017} with LightGBM, two of the most popular machine learning models for forecasting in recent years.
+\cite{Yule1927} introduced the concept that every time series could be considered the realization of a stochastic process, meaning the data points can be assumed to be outcomes from a probabilistic model. This idea led to the first formulations of autoregressive (AR) and moving average (MA) models. The integration of AR with MA models into autoregressive moving average (ARMA) models was further innovated by \cite{Slutzky1937} and \cite{wold1939}. \cite{box1970time} provided further work on these concepts and introduced the Box-Jenkins methodology, which optimizes the application of ARMA models and introduced autoregressive integrated moving average (ARIMA) models for handling non-stationary data. The Box-Jenkins approach enormously impacted the theory and practice of time series analysis and forecasting in modern times \parencite{DEGOOIJER2006443}. \cite{HyndmanForecasting2021}, and earlier editions, provides a thorough overview of these traditional methods and applications. With the innovations of computers, ARIMA models became more practical for practitioners, but as access to computational power has increased, machine learning models have also become a popular choice. Boosting algorithms were introduced to improve the accuracy of predictive models. \cite{Freund1997} developed AdaBoost as a boosting technique for classification problems. This laid the groundwork for \cite{Friedman2001}, which introduced gradient boosting. Gradient boosting later became the foundations for \cite{Chen_2016} with XGBoost and \cite{guolin2017} with LightGBM, two of the most popular machine learning models for forecasting in recent years.
 
 \cite{Krizhevsky2012} is regarded as the breakthrough that showed the power of deep learning by achieving remarkable results in the ImageNet Large Scale Visual Recognition Challenge. The authors advanced the performance of image classification tasks by using a Convolutional Neural Network (CNN) architecture named AlexNet. Although this specific model does not apply to time series, and related work such as \cite{lecun1998gradient} is focused on image processing and recognition, it has popularized CNNs, which have been important for using deep learning in time series forecasting. An example of this is \cite{guokun2018}, which presents the Long and Short-term Time-series network, a model that combines both CNNs and Recurrent Neural Networks (RNNs) for time series forecasting. Today’s most popular AI models for natural language processing (NLP), as \cite{jiang2023mistral} with Mistral 7B, are based on the transformer architecture introduced by \cite{Vaswani2017}. Earlier work as \cite{Hochreiter1997} on Long Short-Term Memory and \cite{bai2018} on Temporal Convolutional Networks has also contributed to the foundation for utilizing deep learning in time series forecasting. 
 
 The early contributions of Brown and Yule to today's sophisticated deep learning models mark a tremendous evolution in the complexity of modeling techniques in time series forecasting. However, a meta-analysis by \cite{Green2015} indicates that increased model complexity does not guarantee superior performance over simpler methods. This observation finds support in the success of the Theta model, developed by \cite{ASSIMAKOPOULOS2000}, which demonstrated competitive results in the M3 competition against much more elaborate models, as presented by \cite{MAKRIDAKIS2000}. This underscores the value of benchmarking new forecasting models against simpler alternatives, providing a critical perspective on their relative performance. While the landscape of forecasting and artificial intelligence is ever-evolving, the future might change these dynamics. Nonetheless, the current state of research suggests a cautious approach to assuming complexity as a hallmark of effectiveness in forecasting models.
 
-\begin{center}
-  \section{Theoretical Framework}
-\end{center}
+% \begin{center}
+%   \section{Theoretical Framework}
+% \end{center}
+\newpage
+{\centering \section{Theoretical Framework} \par}
 
 \subsection{Time Series} \label{timeseries}
 A \textit{time series} is a collection of data points recorded in sequential order over time. It can be \textit{continuous}, recording data continuously over time, or \textit{discrete}, capturing data at specific time intervals. The series type—continuous or discrete—refers to the nature of the time axis, not the variable measured, which can be either discrete or continuous in both types. Discrete time series emerge in three ways: sampling from a continuous series, aggregating over time periods, or inherently discrete occurrences. \cite[11--12]{chatfield2000time} notes that these data points are typically recorded at regular time intervals. A sampled continuous series may be exemplified by hourly temperature recordings, where variables are sequentially logged from an intrinsically continuous series. An example of aggregated data could be the cumulative count of COVID-19 cases since the start of the pandemic, where the data is compiled from continuous records to the total number of infections.
@@ -961,9 +965,13 @@ This is to make the metric independent of the scale of the data. The denominator
 While MASE might initially seem complex, it is a user-friendly indicator of forecast accuracy: a score below 1 indicates better performance than the naive benchmark, around 1 means similar performance, and above 1 suggests poorer performance \parencite[684--685]{HyndmanAccuracy2006}.
 
 
-\begin{center}
-  \section{Methodology}
-\end{center}
+
+
+% \begin{center}
+%   \section{Methodology}
+% \end{center}
+\newpage
+{\centering \section{Methodology} \par}
 
 \subsection{Introduction}
 
@@ -1169,10 +1177,11 @@ Both models output a set of probabilistic distributions for future values. These
 The forecasts generated for each series were compiled into a single DataFrame. This DataFrame was systematically updated with each batch of forecasts while maintaining a record of all predictions made during the session. Once all forecasts were generated and recorded, the DataFrame was saved as a Parquet file for further analysis.
 
 
-\begin{center}
-  \section{Data}
-\end{center}
-
+% \begin{center}
+%   \section{Data}
+% \end{center}
+\newpage
+{\centering \section{Data} \par}
 
 \subsection{Data Collection}
 
@@ -1243,9 +1252,11 @@ One of the benefits of the M3-Competition dataset is that it does not contain ex
 \subsection{Data Limitations}
 In the foundation models we evaluate, there is a difference in the time frequency of the data they are trained on. For instance, Moirai training utilized the LOTSA dataset, in which a mere 0.003\% represents yearly data. For the models we utilize, the bulk of the training data for these models, except for TimeGPT, where the training data is proprietary, consists mainly of hourly data. Although these models are architected to perform zero-shot forecasting across various frequencies, the amount of hourly data in their training raises questions about their effectiveness at different frequencies. This aspect requires closer examination in the results section, especially regarding its impact on model performance with yearly data. Moreover, the M3 dataset does not extend to time frequencies lower than monthly, so it does not thoroughly test the capabilities to handle the time frequency most represented in their training data.
 
-\begin{center}
-  \section{Results}
-\end{center}
+% \begin{center}
+%   \section{Results}
+% \end{center}
+\newpage
+{\centering \section{Results} \par}
 
 In this section, we present the results of our investigation into the performance of the three foundation models in the M3-Competition. Our research focuses on these models' performance in zero-shot forecasting, aiming to highlight their strengths, limitations, and comparative performance for the dataset. 
 
@@ -1493,9 +1504,11 @@ Based on MASE rankings, TimeGPT and Moirai tend to place last more frequently th
 
 The plot shows that rankings vary significantly across time series for all three models. This suggests that the leaderboard should not be taken at face value, as the foundation models' performance varies significantly across the time series. For more details and additional figures, see \hyperref[appendix_e]{Appendix E}.
 
-\begin{center}
-  \section{Discussion}
-\end{center}
+% \begin{center}
+%   \section{Discussion}
+% \end{center}
+\newpage
+{\centering \section{Discussion} \par}
 
 \subsection{Discussion of Results}
 
@@ -1531,9 +1544,11 @@ Another promising area for future research is the application of explainable AI 
 
 In summary, future research should focus on expanding the scope of data and competitions to validate current findings, continuously adapting to advancements in AI, and emphasizing interpretability to ensure that foundation models are effective and trustworthy in time series forecasting. These directions will help pave the way for more robust, adaptable, and transparent forecasting models.
 
-\begin{center}
-  \item  \section{Conclusion}
-\end{center}
+% \begin{center}
+%   \item  \section{Conclusion}
+% \end{center}
+\newpage
+{\centering \section{Conclusion} \par}
 
 This thesis evaluates the zero-shot forecasting performance of foundation models using the M3-Competition dataset. Utilizing the MASE metric, we compare these models against the Naïve2 benchmark, a simpler forecasting method, to determine if the foundation models offer superior performance.
 
@@ -1552,6 +1567,7 @@ Using foundation models for zero-shot forecasting appears to be a viable approac
 \begin{center}
 \item  \section*{Appendix A} \label{appendix_a}
 \end{center}
+
 \addcontentsline{toc}{section}{Appendix A}
 
 
