@@ -16,6 +16,7 @@
 !**/*.tex
 !**/*.bib
 !**/*.pdf
+!**/*.png
 
 # Ignore specific directory 'uni2ts' and its contents
 uni2ts/

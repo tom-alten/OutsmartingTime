@@ -1133,7 +1133,7 @@ First, we calculate the \textit{Percentage Better}, which represents the percent
 
 Statistical testing of the results is fundamental to validate the accuracy and reliability of our findings. To achieve this, we will employ multiple methods. First, we will visualize the results by displaying the distribution of median MASE scores obtained through bootstrap sampling. However, resampling methods do not produce independent values for the evaluation metrics and might lead to underestimating the variance in the performances.
 
-\cite{Koning2005} notes the importance of statistical testing for evaluating forecast accuracy, as relying on descriptive statistics can lead to inaccurate conclusions. We follow a methodology proposed by \cite{Rainio2024} for statistical testing in comparing models. First, we want to investigate if the performance of the three foundation models is significantly different. For this comparison, we test using the \textit{Friedman’s test}. The null hypothesis here is that the differences in model performances are statistically significant. This test has been performed in its original notation. Secondly, we want to test if the amount of variance the foundation models produce is similar. We use the \textit{Levene’s test} to test the null hypothesis that the variances from the model performances are equal. Additionally, we use the \textit{Wilcoxon Signed-Rank test} to test for significant differences between potentially interesting pairs of models. This has the same objective as the Friedman’s test, but it is for assessing between any two models rather than a group of models. 
+\cite{Koning2005} notes the importance of statistical testing for evaluating forecast accuracy, as relying on descriptive statistics can lead to inaccurate conclusions. We follow a methodology proposed by \cite{Rainio2024} for statistical testing in comparing models. First, we want to investigate if the performance of the three foundation models is significantly different. For this comparison, we test using the \textit{Friedman’s test}, a non-parametric test. The null hypothesis here is that a group of models have the same distribution. This test has been performed in its original notation. Secondly, we want to test if the amount of variance the foundation models produce is similar. We use the \textit{Levene’s test} to test the null hypothesis that the variances from the model performances are equal. The Levenes Test is a parametric test altough more robust to non-normal distributions in its median-based version used in this thesis. Additionally, we use the \textit{Wilcoxon Signed-Rank test} to test for significant differences between potentially interesting pairs of models. This is also a non-parametric test and has the same objective as the Friedman’s test, but it is for assessing between any two models rather than a group of models. 
 
 
 These tests have the advantage of not being sensitive to the choice of evaluation metric and can be used for data that is not normally distributed. We used the \textbf{scipy.stats} functions \texttt{friedmanchisquare, levene, and wilcoxon}.
@@ -1216,6 +1216,8 @@ The table of summary statistics (\ref{summary_statistics}) for each category, br
   \centering
   \caption{Summary Statistics of the M3-Competition Dataset}
   \label{summary_statistics}
+  \small % Reduce font size
+  \setlength{\tabcolsep}{4pt} % Reduce column padding
   \begin{tabular}{llrrrrr}
   \toprule
   \textbf{Frequency} & \textbf{Category} & \textbf{Min} & \textbf{Lower Quartile} & \textbf{Mean} & \textbf{Upper Quartile} & \textbf{Max} \\
@@ -1322,7 +1324,7 @@ As mentioned, the M3-Competition do not provide a leaderboard for its participan
   \caption*{* Rank Determined by the Median MASE Score}
 \end{table}
 
-Chronos is the top performer among the foundation models, placing fifth in our evaluation based on the median MASE score. TimeGPT and Moirai present the poorest performance across all evaluated models. It is worth noting that if we were to base our ranking on mean MASE scores, TimeGPT and Moirai would rank slightly higher, and Chronos would place fourth. However, the mean is influenced by outliers in MASE scores, which differ considerably between the models. 
+Chronos is the top performer among the foundation models, placing fifth in our evaluation based on the median MASE score. TimeGPT and Moirai present the poorest performance across all evaluated models. It is worth noting that if we were to base our ranking on mean MASE scores, TimeGPT and Moirai would rank slightly higher, and Chronos would place fourth.
 
 \subsection{Evaluation}
 
@@ -1491,7 +1493,7 @@ To visualize how the performance of the three foundation models would have looke
   \label{mase_sampling_distribution}
 \end{figure}
 
-The Friedman’s test reveals a statistically significant difference between the performance of the foundation models. The Wilcoxon Singed-rank test further confirms this is true for any combination of the three models. In addition, the Levene’s test shows that the variances of the three foundation models are unequal. The Wilcoxon Singed-rank test also discovers that all three foundation models perform significantly worse than Theta, the champion model in our evaluation. All statistical tests are done with a 5\% confidence interval. More details in \hyperref[appendix_e]{Appendix E}.
+The Friedman’s test reveals a statistically significant difference between the performance of the foundation models. The Wilcoxon Signed-rank test further confirms this is true for any combination of the three models. In addition, the Levene’s test shows that the variances of the three foundation models are unequal. The Wilcoxon Signed-rank test also discovers that all three foundation models perform significantly worse than Theta, the champion model in our evaluation. All statistical tests are done with a 5\% confidence interval. More details in \hyperref[appendix_e]{Appendix E}.
 
 We conclude this section by investigating how the foundation models rank in MASE scores for each time series to see if the placement in the earlier leaderboard is justifiable. Figure (\ref{stacked_ranking_count}) shows the count of times each foundation model occupies each rank across all the time series.
 
